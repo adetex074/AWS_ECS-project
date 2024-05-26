@@ -1,0 +1,40 @@
+connect to EC2 instance via VScode
+  "ssh -i "abdul_key.pem" ubuntu@ec2-18-171-226-106.eu-west-2.compute.amazonaws.com"
+create a mongodb image using docker_compose_YAML
+  version: '3.8'
+
+  services:
+    mongo:
+      image: mongo:latest
+      container_name: mongodb
+      ports:
+        - "27017:27017"
+      volumes:
+        - mongo-data:/data/db
+      environment:
+        MONGO_INITDB_ROOT_USERNAME: root
+        MONGO_INITDB_ROOT_PASSWORD: example
+
+  volumes:
+    mongo-data:
+      driver: local
+dockerfile created 
+  "# Use the official MongoDB image from the Docker Hub
+FROM mongo:latest
+
+# Set environment variables for MongoDB
+ENV MONGO_INITDB_ROOT_USERNAME=root
+ENV MONGO_INITDB_ROOT_PASSWORD=example
+
+# Define a volume to store MongoDB data
+VOLUME /data/db
+
+# Expose the default MongoDB port
+EXPOSE 27017
+
+# Command to run MongoDB
+CMD ["mongod"]"
+launch docker build command into the repository
+  "docker build -t docker-compose_yml ."
+
+
